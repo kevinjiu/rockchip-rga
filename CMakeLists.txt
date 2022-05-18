@@ -44,6 +44,7 @@ set(IM2D_SRCS
     core/GrallocOps.cpp
     core/NormalRga.cpp
     core/NormalRgaApi.cpp
+    core/RgaApi.cpp
     core/RgaUtils.cpp
     im2d_api/im2d.cpp)
 
@@ -54,7 +55,9 @@ if(CMAKE_BUILD_TARGET STREQUAL ndk)
 endif()
 
 add_library(rga SHARED ${IM2D_SRCS})
-
+# KevinJ added for static
+add_library(rga_static STATIC ${IM2D_SRCS})
+set_target_properties(rga_static PROPERTIES OUTPUT_NAME rga)
 
 #build im2d test
 set(IM2D_DEMO_SRCS
